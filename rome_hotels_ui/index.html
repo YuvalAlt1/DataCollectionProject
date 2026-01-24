@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rome Hotels | Booking.com Clone</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=BlinkMacSystemFont,-apple-system,Segoe+UI,Roboto,Helvetica,Arial,sans-serif&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- PapaParse for CSV -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+
+<body>
+
+
+    <!-- Header Removed -->
+
+
+    <!-- Hero / Search -->
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1>Find your next stay</h1>
+            <p>Search low prices on hotels, homes and much more...</p>
+        </div>
+
+        <div class="search-bar">
+            <div class="search-item location">
+                <i class="fa-solid fa-bed"></i>
+                <input type="text" value="Rome" placeholder="Where are you going?">
+                <i class="fa-solid fa-xmark clear-icon"></i>
+            </div>
+            <div class="search-item dates">
+                <i class="fa-regular fa-calendar"></i>
+                <span>Check-in date — Check-out date</span>
+            </div>
+            <div class="search-item guests">
+                <i class="fa-solid fa-user"></i>
+                <span>2 adults · 0 children · 1 room</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <button class="search-btn">Search</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Sidebar filters -->
+        <aside class="sidebar">
+            <div class="map-widget">
+                <div class="map-bg"></div>
+                <button class="map-btn"><i class="fa-solid fa-location-dot"></i> Show on map</button>
+            </div>
+
+            <div class="filters">
+                <h3>Filter by:</h3>
+                <div class="filter-group">
+                    <h4>Popular filters</h4>
+                    <label class="checkbox-row"><input type="checkbox"> <span>Hotels</span></label>
+                    <label class="checkbox-row"><input type="checkbox"> <span>Wonderful: 9+</span></label>
+                    <label class="checkbox-row"><input type="checkbox"> <span>Free cancellation</span></label>
+                </div>
+                <div class="filter-group">
+                    <h4>Property Type</h4>
+                    <label class="checkbox-row"><input type="checkbox"> <span>Apartments</span></label>
+                    <label class="checkbox-row"><input type="checkbox"> <span>Hotels</span></label>
+                    <label class="checkbox-row"><input type="checkbox"> <span>Guest houses</span></label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Results List -->
+        <main class="results-section">
+            <div class="results-header">
+                <h2>Rome: <span id="property-count">1,230</span> properties found</h2>
+                <div class="csv-upload-container">
+                    <label for="csvFileInput" class="csv-upload-label"><i class="fa-solid fa-file-csv"></i> Load Custom
+                        CSV</label>
+                    <input type="file" id="csvFileInput" accept=".csv" />
+                </div>
+                <div class="sort-bar">
+                    <button class="sort-btn active">Our top picks</button>
+                    <button class="sort-btn">Homes & apartments first</button>
+                    <button class="sort-btn">Price (lowest first)</button>
+                    <button class="sort-btn">Best reviewed and lowest price</button>
+                </div>
+            </div>
+
+            <div id="hotel-list" class="hotel-list">
+                <!-- Hotel Items will be injected here by JS -->
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

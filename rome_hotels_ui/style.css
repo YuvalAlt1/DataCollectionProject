@@ -1,0 +1,610 @@
+:root {
+    --primary: #003580;
+    --primary-light: #006ce4;
+    --primary-dark: #00224f;
+    --secondary: #febb02;
+    --secondary-hover: #ffcf4b;
+    --bg-light: #f5f5f5;
+    --text-main: #1a1a1a;
+    --text-light: #595959;
+    --green-success: #008234;
+    --red-error: #d93025;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 2px 8px 0 rgba(26, 26, 26, 0.16);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: #fff;
+    color: var(--text-main);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Header */
+.header {
+    background-color: var(--primary);
+    color: white;
+    padding: 0 10%;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary);
+    border: 1px solid white;
+    padding: 5px 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.header-nav {
+    display: flex;
+    gap: 8px;
+    padding-bottom: 20px;
+}
+
+.header-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+}
+
+.header-nav a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid white;
+}
+
+/* Hero / Search */
+.hero-container {
+    background-color: var(--primary);
+    padding: 0 10% 60px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.hero-content {
+    color: white;
+    margin-bottom: 24px;
+    padding-top: 30px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 8px;
+}
+
+.hero-content p {
+    font-size: 24px;
+}
+
+.search-bar {
+    background-color: var(--secondary);
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    gap: 4px;
+    position: absolute;
+    bottom: -28px;
+    left: 10%;
+    right: 10%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search-item {
+    background: white;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 52px;
+}
+
+.search-item.location {
+    flex: 1.5;
+    border-radius: 2px;
+}
+
+.search-item.dates {
+    flex: 1;
+    cursor: pointer;
+}
+
+.search-item.guests {
+    flex: 1;
+    cursor: pointer;
+}
+
+.search-item i {
+    color: var(--text-light);
+    font-size: 18px;
+}
+
+.search-item input {
+    border: none;
+    outline: none;
+    font-size: 15px;
+    width: 100%;
+    font-weight: 500;
+}
+
+.search-btn {
+    background-color: var(--primary-light);
+    color: white;
+    border: none;
+    padding: 0 24px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.search-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Main Content */
+.main-container {
+    padding: 0 10%;
+    display: flex;
+    gap: 24px;
+    margin-top: 60px;
+}
+
+.sidebar {
+    width: 25%;
+    min-width: 280px;
+}
+
+.map-widget {
+    height: 120px;
+    border-radius: 8px;
+    background: url('https://cf.bstatic.com/static/img/map-entry-point/map-entry-point-entry-with-map-image/8061d4b68e5473857d95394625b6a79051016805.jpg') center/cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.map-btn {
+    background: var(--primary-light);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.filters h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.checkbox-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Results */
+.results-section {
+    flex: 1;
+}
+
+.results-header {
+    margin-bottom: 20px;
+}
+
+.results-header h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.csv-upload-container {
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+#csvFileInput {
+    display: none;
+}
+
+.csv-upload-label {
+    background: #f1f1f1;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.csv-upload-label:hover {
+    background: #e0e0e0;
+}
+
+.sort-bar {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid #e7e7e7;
+    padding-bottom: 1px;
+}
+
+.sort-btn {
+    background: white;
+    border: 1px solid #e7e7e7;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.sort-btn.active {
+    background: white;
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+/* Hotel Card */
+.hotel-card {
+    border: 1px solid #e7e7e7;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    transition: box-shadow 0.2s;
+}
+
+.hotel-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* .hotel-image removed */
+
+.hotel-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.hotel-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.hotel-title {
+    color: var(--primary-light);
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.hotel-title:hover {
+    text-decoration: underline;
+}
+
+.hotel-rating-box {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.review-text {
+    text-align: right;
+}
+
+.review-score-desc {
+    font-weight: 500;
+    display: block;
+    color: var(--text-main);
+}
+
+.review-count {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.rating-badge {
+    background: var(--primary);
+    color: white;
+    font-weight: 500;
+    padding: 8px;
+    border-radius: 6px 6px 6px 0;
+    min-width: 32px;
+    text-align: center;
+}
+
+.hotel-location {
+    font-size: 12px;
+    color: var(--primary-light);
+    margin-bottom: 12px;
+    display: flex;
+    gap: 4px;
+}
+
+.hotel-location a {
+    color: var(--primary-light);
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.hotel-card-body {
+    display: flex;
+    flex: 1;
+}
+
+.hotel-details {
+    flex: 1;
+    border-right: 1px solid #eee;
+    padding-right: 16px;
+    font-size: 12px;
+}
+
+.room-desc {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.room-features {
+    color: var(--green-success);
+    margin-bottom: 8px;
+}
+
+.hotel-price-section {
+    width: 160px;
+    padding-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.price-days {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.price-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.price-taxes {
+    color: var(--text-light);
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.btn-availability {
+    background-color: var(--primary-light);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-availability:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Review Summary AI Badge */
+.ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    color: #0d47a1;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    border: 1px solid #90caf9;
+    transition: all 0.2s;
+    width: fit-content;
+}
+
+.ai-badge:hover {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ai-robot-icon {
+    font-size: 15px;
+}
+
+/* Tooltip / Popup */
+.review-tooltip {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    z-index: 100;
+    background: white;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    padding: 0;
+    display: none;
+    /* Hidden by default */
+    animation: fadeIn 0.2s ease-out;
+    border: 1px solid #ccc;
+    font-family: var(--font-family);
+    color: var(--text-main);
+}
+
+.review-tooltip.show {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tooltip-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tooltip-title {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+}
+
+.close-tooltip {
+    cursor: pointer;
+    color: #999;
+    font-size: 16px;
+}
+
+.close-tooltip:hover {
+    color: #333;
+}
+
+.tooltip-content {
+    padding: 16px;
+}
+
+.tooltip-section {
+    margin-bottom: 12px;
+}
+
+.tooltip-section h5 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pros-title {
+    color: var(--green-success);
+}
+
+.cons-title {
+    color: var(--red-error);
+}
+
+.tooltip-list {
+    list-style: none;
+    font-size: 13px;
+    color: #333;
+}
+
+.tooltip-list li {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+}
+
+.tooltip-list li i {
+    margin-top: 3px;
+}
+
+.list-check {
+    color: var(--green-success);
+}
+
+.list-cross {
+    color: var(--red-error);
+}
+
+.tooltip-footer {
+    border-top: 1px solid #eee;
+    padding: 12px 16px;
+    background: #fcfcfc;
+    border-radius: 0 0 8px 8px;
+    font-weight: 700;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating-val {
+    color: var(--primary);
+}
