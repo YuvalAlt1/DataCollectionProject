@@ -1,6 +1,34 @@
 // App State
 let hotels = [];
 
+const hotelImages = [
+    "pexels-23audiovisual-28909289.jpg",
+    "pexels-anatoleos-35419519.jpg",
+    "pexels-clement-proust-363898785-29532567.jpg",
+    "pexels-cottonbro-5371573.jpg",
+    "pexels-cottonbro-5379175.jpg",
+    "pexels-cottonbro-7608683.jpg",
+    "pexels-dianpraditaputri-28855455.jpg",
+    "pexels-didi-lecatompessy-2149441489-33125906.jpg",
+    "pexels-elridge-215595568-35458674.jpg",
+    "pexels-hongyue-stone-jon-lee-504232700-16253100.jpg",
+    "pexels-kadiravsarr-15010963.jpg",
+    "pexels-khezez-32334253.jpg",
+    "pexels-khojiakbar-teshaboev-2154965416-34631242.jpg",
+    "pexels-laudiatsr-34523307.jpg",
+    "pexels-leonardo-aquino-246345118-28174031.jpg",
+    "pexels-lina-12238319.jpg",
+    "pexels-mikhail-nilov-7820689.jpg",
+    "pexels-monkeytactics-751266.jpg",
+    "pexels-osho-1001965.jpg",
+    "pexels-pixabay-161758.jpg",
+    "pexels-prateekkatyal-3678857.jpg",
+    "pexels-quang-nguyen-vinh-222549-14036253.jpg",
+    "pexels-quang-nguyen-vinh-222549-29000012.jpg",
+    "pexels-sarah-o-shea-98049248-29586726.jpg",
+    "pexels-thiha-soe-2746200-5883725.jpg"
+];
+
 // DOM Elements
 const hotelListEl = document.getElementById('hotel-list');
 const propertyCountEl = document.getElementById('property-count');
@@ -51,11 +79,15 @@ function renderHotels(data) {
         // Random price generation for demo (since CSV doesn't have it)
         const price = Math.floor(Math.random() * (400 - 100) + 100) * 3;
 
+        // Random Image
+        const randomImage = hotelImages[Math.floor(Math.random() * hotelImages.length)];
+
         const card = document.createElement('div');
         card.className = 'hotel-card';
         card.id = `hotel-${hotel.listing_id}`;
 
         card.innerHTML = `
+            <img src="images/${randomImage}" class="hotel-image" alt="${hotel.title_norm}">
             <div class="hotel-info">
                 <div class="hotel-header">
                     <a href="${hotel.source_url}" class="hotel-title" target="_blank">${hotel.title_norm}</a>
@@ -77,7 +109,10 @@ function renderHotels(data) {
                     <div class="hotel-details">
                         <div class="room-desc">Superior Double Room</div>
                         <div class="room-features">1 full bed • Free cancellation • No prepayment needed</div>
-                        <p style="color:#666; font-size:12px; margin-top:8px;">${hotel.llm_summary ? hotel.llm_summary.substring(0, 150) + '...' : 'No summary available.'}</p>
+                        <div class="ai-summary-container">
+                            <h4 class="ai-summary-title"><i class="fa-solid fa-robot"></i> AI Review</h4>
+                            <p class="ai-summary-text">${hotel.llm_summary || 'No summary available.'}</p>
+                        </div>
                         
                         <!-- AI Summary Trigger -->
                         <div class="ai-badge" onclick="toggleTooltip('${hotel.listing_id}', event)">
