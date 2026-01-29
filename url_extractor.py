@@ -4,8 +4,9 @@ import os
 from playwright.async_api import async_playwright
 
 # --- CONFIGURATION ---
+# Update URL_CONFIG before running the code
 URL_CONFIG = {
-    "endpoint": "wss://brd-customer-hl_80709a30-zone-scraping_browser19:07xgw0fri90j@brd.superproxy.io:9222",
+    "endpoint": "wss://USERNAME:PASSWORD.superproxy.io:9222",
     "search_urls": ["https://www.hostelworld.com/hostels/europe/italy/rome/",
                     "https://www.hostelworld.com/hostels/europe/italy/rome/p/2/",
                     "https://www.hostelworld.com/hostels/europe/italy/rome/p/3/",

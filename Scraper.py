@@ -5,8 +5,9 @@ import pandas as pd
 from playwright.async_api import async_playwright
 import glob
 
+# Update CONFIG endpoint to run the scraper
 CONFIG = {
-    "endpoint": "wss://brd-customer-hl_80709a30-zone-scraping_browser19:07xgw0fri90j@brd.superproxy.io:9222",
+    "endpoint": "wss://USERNAME:PASSWORD.superproxy.io:9222",
     "urls": [
         "https://www.hostelworld.com/hostels/p/743/yellowsquare-rome/"
     ],

@@ -2,7 +2,10 @@
 
 Final project — Data Collection course
 
-This repository demonstrates an end-to-end data collection pipeline for accommodation listings in Rome. It covers (1) extracting listing URLs from a search/results site, (2) scraping reviews & metadata using a headless browser through Bright Data (formerly Luminati / Bright Data SBR), (3) merging scraped results with large platform datasets (Airbnb / Booking) inside a Spark/Databricks notebook and (4) exporting a CSV used by a small local UI in `rome_hotels_ui` for visualization and exploration.
+This repository demonstrates an end-to-end data collection pipeline for accommodation listings in Rome. It covers (1) extracting listing URLs from a search/results site, (2) scraping reviews & metadata using a headless browser through Bright Data, (3) merging scraped results with large platform datasets (Airbnb / Booking) inside a Spark/Databricks notebook and (4) exporting a CSV used by a small local UI in `rome_hotels_ui` for visualization and exploration.
+
+***Important***
+The following pipeline requires API keys/usernames to be provided to it as the used values were removed for security reasons.
 
 Overview / pipeline
 - Step 1 — URL extraction: run `url_extractor.py` to collect listing page URLs (HostelWorld in this repo).
@@ -11,12 +14,13 @@ Overview / pipeline
 - Step 4 — UI: convert the exported CSV to `rome_hotels_ui/data.js` (or use provided `data.js`) and serve the `rome_hotels_ui` folder to preview the interface.
 
 Important repository files
-- url_extractor.py — Crawls search/result pages (HostelWorld listing pages) and writes a JSON list of listing URLs to `./scraper_results/rome_hostel_urls.json`. Update `URL_CONFIG` (endpoint, search_urls) before use.
+- url_extractor.py — Crawls search/result pages (HostelWorld listing pages) and writes a JSON list of listing URLs to `./scraper_results/rome_hostel_urls.json`. ***Update `URL_CONFIG` (endpoint, search_urls) before use.***
 - Scraper.py — Asynchronous Playwright-based scraper that:
   - uses Bright Data endpoint via CDP (WebSocket),
   - navigates to each listing URL,
   - expands reviews when possible and extracts review text + per-listing metadata,
   - saves data in batches under `./scraper_results/` and merges batches into `final_hostel_results.csv`.
+  - ***Update `CONFIG` before use***.
 - Project_207583204_318738127_206941908.ipynb — Databricks / PySpark notebook that:
   - configures Azure storage and SAS tokens,
   - loads Airbnb and Booking parquet sources,
@@ -43,10 +47,6 @@ Prerequisites (recommended)
 - Databricks / Spark environment to run the notebook (the notebook assumes Spark / Databricks runtime and uses ABFS URIs).
 - Bright Data (or equivalent) scraping browser endpoint / credentials — a WebSocket CDP endpoint is used by the scripts. You must supply your own endpoint / credentials.
 - (Windows) PowerShell to run `gen_data.ps1` or use the provided Python conversion command below.
-
-Security note (very important)
-- The Bright Data WebSocket endpoint in the example includes credentials. Do not commit real credentials to source control. Replace any hard-coded credentials with environment variables or local configuration files ignored by git.
-- Do not publish your Azure SAS tokens or other secrets. The notebook contains placeholders for SAS tokens — these must be set securely (see notebook cell comments).
 
 Quickstart — extract -> scrape -> process -> serve
 
@@ -85,14 +85,14 @@ Notes:
 4) Run the Databricks notebook (merge, QA, export)
 - Open `Project_207583204_318738127_206941908.ipynb` in a Databricks workspace (or a local Jupyter that has a Spark session configured).
 - Edit the top cells:
-  - Set `storage_account`, `booking_sas_token`, `airbnb_sas_token` (or update how credentials are provided).
+  - Set `booking_sas_token`, `airbnb_sas_token`.
   - Update `HOSTEL_CSV_PATH` to point to where you uploaded `final_hostel_results.csv` in DBFS (example in notebook: `dbfs:/FileStore/tables/final_hostel_results_filtered.csv`).
+- Edit `GROQ_API_KEY` in cell 17.
 - Run cells top-to-bottom. The notebook:
   - loads and standardizes Airbnb / Booking data (parquet via ABFS),
   - loads scraped hostel CSV data,
   - aligns schema and unions datasets,
-  - exports a final CSV to DBFS, e.g.:
-    - `dbfs:/FileStore/exports/rome_all_export_csv/rome_all.csv`
+  - exports a final CSV to DBFS
 - Download the exported CSV from Databricks to your local machine.
 
 5) Prepare data for the UI
@@ -101,6 +101,7 @@ Notes:
     - Edit `gen_data.ps1` and set `$src` to your downloaded CSV path and `$dst` to `rome_hotels_ui/data.js` then run:
       - powershell -ExecutionPolicy Bypass -File rome_hotels_ui\gen_data.ps1
   - Or use Python:
+    - Example:
     - python - <<PY
       data = open('rome_all.csv', 'r', encoding='utf-8').read()
       out = "const CSV_DATA = `"+data.replace('`','\\`')+"`;"
