@@ -5,7 +5,9 @@ Final project — Data Collection course
 This repository demonstrates an end-to-end data collection pipeline for accommodation listings in Rome. It covers (1) extracting listing URLs from a search/results site, (2) scraping reviews & metadata using a headless browser through Bright Data, (3) merging scraped results with large platform datasets (Airbnb / Booking) inside a Spark/Databricks notebook and (4) exporting a CSV used by a small local UI in `rome_hotels_ui` for visualization and exploration.
 
 ***Important***
-The following pipeline requires API keys/usernames to be provided to it as the used values were removed for security reasons.
+
+1. The following pipeline requires API keys/usernames to be provided to it as the used values were removed for security reasons.
+2. The pipeline produces results saved already in csv files in the Azure Blob Storage under the submissions container in the directory of Ariel_Yuval_Reut, so running the pipeline again is not required for the interface to work.
 
 Overview / pipeline
 - Step 1 — URL extraction: run `url_extractor.py` to collect listing page URLs (HostelWorld in this repo).
